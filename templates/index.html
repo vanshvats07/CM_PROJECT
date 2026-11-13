@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outlier Detector – Z-Score</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+
+    <!-- Title and description -->
+    <header class="header">
+      <h1>Statistical Outlier Detection</h1>
+      <p>Enter a list of numbers. The system calculates a Z-Score for each value
+         and flags any value more than 3 standard deviations from the mean as an outlier.</p>
+    </header>
+
+    <!-- Input -->
+    <section class="panel">
+      <label for="dataInput" class="field-label">Dataset</label>
+      <textarea id="dataInput" rows="4"
+        placeholder="Type numbers separated by commas, e.g. 10, 12, 11, 13, 100"></textarea>
+
+      <p id="message" class="message" role="alert" hidden></p>
+
+      <div class="buttons">
+        <button id="analyzeBtn" class="btn btn-primary" type="button">Analyze</button>
+        <button id="sampleBtn" class="btn" type="button">Sample data</button>
+        <button id="clearBtn" class="btn" type="button">Clear</button>
+      </div>
+    </section>
+
+    <!-- Results (hidden until the first analysis) -->
+    <div id="results" hidden>
+
+      <section class="cards" aria-label="Summary">
+        <div class="card">
+          <span class="card-label">Mean</span>
+          <strong id="meanValue" class="card-value">–</strong>
+        </div>
+        <div class="card">
+          <span class="card-label">Standard deviation</span>
+          <strong id="stdValue" class="card-value">–</strong>
+        </div>
+        <div class="card">
+          <span class="card-label">Total observations</span>
+          <strong id="countValue" class="card-value">–</strong>
+        </div>
+        <div id="outlierCard" class="card">
+          <span class="card-label">Outliers found</span>
+          <strong id="outlierValue" class="card-value">–</strong>
+        </div>
+      </section>
+
+      <p id="notice" class="message notice" hidden></p>
+
+      <section class="panel">
+        <h2>Scatter plot</h2>
+        <img id="plotImage" class="plot" alt="Scatter plot of the data with outliers highlighted in red">
+      </section>
+
+      <section class="panel">
+        <h2>Results table</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Value</th>
+                <th>Z-Score</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
