@@ -1,2 +1,5 @@
-Flask>=3.0
-matplotlib>=3.8
+# Flask>=3.0
+# matplotlib>=3.8
+# flask
+# gunicorn
+# flask-cors
